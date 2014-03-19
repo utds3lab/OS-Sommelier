@@ -340,11 +340,18 @@ unsigned getPgd(char *mem, int mem_size)
     struct timeval earlier;
     struct timeval later;
 
+    //initilize array pageIndex
     if (gettimeofday(&earlier, NULL)) {
         perror("gettimeofday() error");
         exit(1);
     }
+    
+    int k = 0;
+    for (k = 0; k < totalPageNumber; k++) {
+        pageIndex[k] = 0;
+    }
 
+    
     int pgdcount =
         getPotentialPgd(totalPageNumber, pageSize, mem, pageIndex,
                         mem_size);
